@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../../compenents/Button/Button";
 import { CgProfile } from "react-icons/cg";
+import { AuthContext } from "../../../context/UserContext/UserContext";
 
 const Navbar = () => {
+  const { user, logOutUser } = useContext(AuthContext);
+  const userSignOut = () => {
+    logOutUser()
+      .then(() => {})
+      .catch((err) => console.error(err));
+  };
   const NavLinkItems = (
     <>
       <li className="mr-3">
@@ -14,14 +21,16 @@ const Navbar = () => {
           Home
         </Link>
       </li>
-      {/* <li className="mr-3">
-        <Link
-          className="text-lg hover:bg-[#ffc600] hover:text-[#111111]  rounded-md"
-          to="/home"
-        >
-          Dashboard
-        </Link>
-      </li> */}
+      {user?.email && (
+        <li className="mr-3">
+          <Link
+            className="text-lg hover:bg-[#ffc600] hover:text-[#111111]  rounded-md"
+            to="/dashboard"
+          >
+            Dashboard
+          </Link>
+        </li>
+      )}
       <li className="mr-3">
         <Link
           className="text-lg hover:bg-[#ffc600] hover:text-[#111111]  rounded-md"
@@ -70,12 +79,43 @@ const Navbar = () => {
         <ul className="menu menu-horizontal p-0">{NavLinkItems}</ul>
       </div>
       <div className="navbar-end">
-        <Link>
-          <Button>
-            <CgProfile className="text-lg mr-1"></CgProfile>
-            Sign in
-          </Button>
-        </Link>
+        {user?.email ? (
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src={user?.photoURL ? user?.photoURL : ""} alt="" />
+              </div>
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li className="mb-3 ">
+                <span className="text-xl w-full text-black bg-transparent">
+                  {user?.displayName ? user.displayName : "not found"}
+                </span>
+              </li>
+
+              <li>
+                <button
+                  className="btn bg-[#ffc600] rounded-md  text-[#111111] border-none hover:bg-[#eebe0f]"
+                  onClick={userSignOut}
+                >
+                  Sign Out
+                </button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <>
+            <Link to="/login">
+              <Button>
+                <CgProfile className="text-lg mr-1"></CgProfile>
+                Sign in
+              </Button>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { AiOutlineLaptop } from "react-icons/ai";
 
 const ProductsCatagoryListItem = ({ catagory }) => {
-  console.log(catagory);
   const { _id, catagoryName } = catagory;
 
   return (
