@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../api/imageUpload";
 import { saveUsers } from "../../api/saveUsers";
 import Button from "../../compenents/Button/Button";
@@ -18,6 +18,10 @@ const Register = () => {
     userUpadetedProfile,
     signInWithGoogle,
   } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,6 +61,7 @@ const Register = () => {
                       console.log(data);
                       form.reset();
                       toast.success("User Created successfully");
+                      navigate(from, { replace: true });
                     }
                   })
                   .catch((err) => {

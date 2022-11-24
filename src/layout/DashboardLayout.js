@@ -47,7 +47,7 @@ const DashboardLayout = () => {
             <div>
               <li className="mb-2">
                 <Link
-                  to=""
+                  to="/dashboard"
                   className="font-bold text-white bg-transparent hover:underline hover:underline-offset-4"
                 >
                   <BiLaptop className="text-xl" />
@@ -58,7 +58,7 @@ const DashboardLayout = () => {
                 <>
                   <li className="mb-2">
                     <Link
-                      to=""
+                      to="/dashboard/addProduct"
                       className=" font-bold text-white bg-transparent hover:underline hover:underline-offset-4"
                     >
                       <IoMdAddCircleOutline className="text-xl" />
@@ -67,7 +67,7 @@ const DashboardLayout = () => {
                   </li>
                   <li className="mb-2">
                     <Link
-                      to=""
+                      to="/dashboard/myProducts"
                       className=" font-bold text-white bg-transparent hover:underline hover:underline-offset-4"
                     >
                       <RiProductHuntLine className="text-xl" />
@@ -80,7 +80,7 @@ const DashboardLayout = () => {
                 <>
                   <li className="mb-2">
                     <Link
-                      to=""
+                      to="/dashboard/allSellers"
                       className="font-bold text-white bg-transparent hover:underline hover:underline-offset-4"
                     >
                       <AiOutlineUserAdd className="text-xl" />
@@ -89,7 +89,7 @@ const DashboardLayout = () => {
                   </li>
                   <li>
                     <Link
-                      to=""
+                      to="/dashboard/allBuyers"
                       className="font-bold text-white bg-transparent hover:underline hover:underline-offset-4"
                     >
                       <AiOutlineUsergroupAdd className="text-xl" />
