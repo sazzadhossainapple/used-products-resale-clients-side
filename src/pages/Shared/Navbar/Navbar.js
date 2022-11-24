@@ -31,6 +31,16 @@ const Navbar = () => {
           </Link>
         </li>
       )}
+      {user?.email && (
+        <li>
+          <label
+            htmlFor="dashboard-drawer"
+            className=" text-white drawer-button lg:hidden"
+          >
+            My bord
+          </label>
+        </li>
+      )}
       <li className="mr-3">
         <Link
           className="text-lg hover:bg-[#ffc600] hover:text-[#111111]  rounded-md"
