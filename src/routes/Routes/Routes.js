@@ -11,7 +11,7 @@ import ErrorPage from "../../pages/ErrorPage/ErrorPage";
 import Home from "../../pages/Home/Home/Home";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
-import CatagoryProducts from "../../pages/Shared/CatagoryProducts/CatagoryProducts";
+import CatagoryProducts from "../../pages/CatagoryProduct/CatagoryProducts/CatagoryProducts";
 import AdminRoutes from "../AdminRoutes/AdminRoutes";
 import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 import SellerRoutes from "../SellerRoutes/SellerRoutes";
@@ -29,7 +29,11 @@ export const router = createBrowserRouter([
       { path: "/register", element: <Register /> },
       {
         path: "/catagory/:id",
-        element: <CatagoryProducts />,
+        element: (
+          <PrivateRoutes>
+            <CatagoryProducts />
+          </PrivateRoutes>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/catagory/${params.id}`),
       },

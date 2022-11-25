@@ -4,7 +4,7 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { BiTime } from "react-icons/bi";
 import { IoMdPricetags } from "react-icons/io";
 import Button from "../../../compenents/Button/Button";
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, setBookNow }) => {
   const {
     date,
     location,
@@ -48,7 +48,7 @@ const ProductCard = ({ product }) => {
           </div>
           <div className="flex items-center text-gray-700 dark:text-gray-200">
             <AiOutlineCalendar />
-            <h1 className="px-2 text-sm">{`${useYear} years use`}</h1>
+            <h1 className="px-2 text-sm">{`${useYear} Years Use`}</h1>
           </div>
           <div className="flex items-center text-gray-700 dark:text-gray-200">
             <BiTime></BiTime>
@@ -65,7 +65,13 @@ const ProductCard = ({ product }) => {
           <h1 className="px-2 text-xl">Orginal: ${orginalPrice}</h1>
         </div>
       </div>
-      <Button classes="w-full">Book Now</Button>
+      <label
+        onClick={() => setBookNow(product)}
+        htmlFor="bookNow"
+        className="btn w-full bg-[#ffc600] rounded-md  text-[#111111] border-none hover:bg-[#eebe0f]"
+      >
+        Book Now
+      </label>
     </div>
   );
 };
