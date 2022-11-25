@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { addProduct } from "../../../api/addProduct";
 import { getImageUrl } from "../../../api/imageUpload";
 import Loading from "../../../compenents/Loading/Loading";
@@ -30,7 +31,7 @@ const AddProduct = () => {
     e.preventDefault();
     const form = e.target;
 
-    const catagoryName = form.catagoryName.value;
+    const catagoryId = form.catagoryId.value;
     const productName = form.productName.value;
     const resalePrice = form.resalePrice.value;
     const orginalPrice = form.orginalPrice.value;
@@ -41,7 +42,7 @@ const AddProduct = () => {
     const condition = form.condition.value;
     const description = form.description.value;
     console.log(
-      catagoryName,
+      catagoryId,
       productName,
       resalePrice,
       orginalPrice,
@@ -58,7 +59,7 @@ const AddProduct = () => {
     getImageUrl(image)
       .then((imageData) => {
         const products = {
-          catagoryName,
+          catagoryId,
           productName,
           resalePrice,
           orginalPrice,
@@ -74,7 +75,11 @@ const AddProduct = () => {
 
         addProduct(products)
           .then((data) => {
-            console.log(data);
+            if (data.acknowledged) {
+              console.log(data);
+              form.reset();
+              toast.success("Products Added Successfully.");
+            }
           })
           .catch((error) => console.log(error));
       })
