@@ -66,22 +66,18 @@ const Register = () => {
                   })
                   .catch((err) => {
                     console.log(err);
-                    setLoading(false);
                   });
               })
               .catch((err) => {
                 console.log(err);
-                setLoading(false);
               });
           })
           .catch((err) => {
             console.error(err);
-            setLoading(false);
           });
       })
       .catch((err) => {
         console.error(err);
-        setLoading(false);
       });
   };
 
@@ -163,9 +159,7 @@ const Register = () => {
               </div>
 
               <div className="form-control mt-6">
-                <Button>
-                  {loading ? <SmallLoading></SmallLoading> : "Sign Up"}
-                </Button>
+                <Button>Sign Up</Button>
               </div>
             </form>
 
