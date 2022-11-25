@@ -28,8 +28,8 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-72 bg-gradient-to-tr from-[#0aa68e] to-[#149777] flex  justify-center items-center">
-            <div className="avatar  mb-3">
+          <ul className="menu p-4 w-72 bg-gradient-to-tr from-[#0aa68e] to-[#149777] flex items-center">
+            <div className="avatar mt-10  mb-3">
               <div className="w-24 rounded-full">
                 <img src={user?.photoURL} alt="" />
               </div>

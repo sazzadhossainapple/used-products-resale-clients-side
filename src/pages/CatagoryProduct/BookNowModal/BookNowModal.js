@@ -5,7 +5,7 @@ import { AuthContext } from "../../../context/UserContext/UserContext";
 
 const BookNowModal = ({ isBookNow, setBookNow }) => {
   const { user } = useContext(AuthContext);
-  const { productName, resalePrice } = isBookNow;
+  const { productName, resalePrice, productImage } = isBookNow;
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -26,6 +26,7 @@ const BookNowModal = ({ isBookNow, setBookNow }) => {
       price,
       phone,
       location,
+      productImage,
     };
     fetch("http://localhost:5000/buyerBookProducts", {
       method: "POST",

@@ -93,8 +93,8 @@ const AddProduct = () => {
   ];
 
   return (
-    <section className="max-w-4xl my-8 sm:my-10 md:my-12 lg:my-14 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-      <div className="mb-16 text-center flex justify-center ">
+    <section className="max-w-4xl my-8 sm:my-8 md:my-10 lg:my-12 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
+      <div className=" mb-10 sm:mb-16 text-center flex justify-center ">
         <h1 className=" text-3xl font-bold  italic">Add Product</h1>
         <hr className="border-2 w-7 border-[#149777]" />
       </div>
