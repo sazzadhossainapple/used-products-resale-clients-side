@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "../../../compenents/Button/Button";
 import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "../../../context/UserContext/UserContext";
+import userDefaultImage from "../../../asserts/Images/banner/user.jpg";
 
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
@@ -93,7 +94,10 @@ const Navbar = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src={user?.photoURL ? user?.photoURL : ""} alt="" />
+                <img
+                  src={user?.photoURL ? user?.photoURL : { userDefaultImage }}
+                  alt=""
+                />
               </div>
             </label>
             <ul

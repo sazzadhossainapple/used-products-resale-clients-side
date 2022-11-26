@@ -7,8 +7,8 @@ import { AuthContext } from "../../context/UserContext/UserContext";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { logInUser, loading, setLoading } = useContext(AuthContext);
-  const [loginUserEmail, setLoginUserEmail] = useState("");
+  const { logInUser, signInWithGoogle } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -30,6 +30,48 @@ const Login = () => {
       })
       .catch((err) => {
         console.error(err);
+      });
+  };
+
+  // google sign in
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+
+        const userInfo = {
+          UserName: user?.displayName,
+          email: user?.email,
+          isVerifed: false,
+          userImage: user.photoURL,
+          role: "Buyer",
+        };
+
+        // database user save
+        fetch(`http://localhost:5000/users/${user?.email}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.acknowledged) {
+              console.log(data);
+              toast.success("User Created successfully");
+              navigate(from, { replace: true });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error(error.meassage);
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.meassage);
       });
   };
 
@@ -109,7 +151,7 @@ const Login = () => {
             <div className="divider">OR</div>
 
             <div className=" flex justify-center">
-              <button>
+              <button onClick={handleGoogleSignIn}>
                 <FcGoogle className="text-2xl"></FcGoogle>
               </button>
             </div>

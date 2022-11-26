@@ -2,22 +2,15 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import { getImageUrl } from "../../api/imageUpload";
 import { saveUsers } from "../../api/saveUsers";
 import Button from "../../compenents/Button/Button";
-import SmallLoading from "../../compenents/Loading/SmallLoading";
 import { AuthContext } from "../../context/UserContext/UserContext";
 
 const Register = () => {
-  const {
-    loading,
-    setLoading,
-    createUser,
-    logInUser,
-    logOutUser,
-    userUpadetedProfile,
-    signInWithGoogle,
-  } = useContext(AuthContext);
+  const { createUser, userUpadetedProfile, signInWithGoogle } =
+    useContext(AuthContext);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,7 +42,7 @@ const Register = () => {
                 const userInfo = {
                   UserName: name,
                   email: email,
-                  password: password,
+                  isVerifed: false,
                   userImage: imageData,
                   role: role,
                 };
@@ -66,18 +59,64 @@ const Register = () => {
                   })
                   .catch((err) => {
                     console.log(err);
+                    toast.error(err.meassage);
                   });
               })
               .catch((err) => {
                 console.log(err);
+                toast.error(err.meassage);
               });
           })
           .catch((err) => {
             console.error(err);
+            toast.error(err.meassage);
           });
       })
       .catch((err) => {
         console.error(err);
+        toast.error(err.meassage);
+      });
+  };
+
+  // google sign in
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+
+        const userInfo = {
+          UserName: user?.displayName,
+          email: user?.email,
+          isVerifed: false,
+          userImage: user.photoURL,
+          role: "Buyer",
+        };
+
+        // database user save
+        fetch(`http://localhost:5000/users/${user?.email}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.acknowledged) {
+              console.log(data);
+              toast.success("User Created successfully");
+              navigate(from, { replace: true });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error(error.meassage);
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.meassage);
       });
   };
 
@@ -172,7 +211,7 @@ const Register = () => {
             <div className="divider">OR</div>
 
             <div className=" flex justify-center">
-              <button>
+              <button onClick={handleGoogleSignIn}>
                 <FcGoogle className="text-2xl"></FcGoogle>
               </button>
             </div>
