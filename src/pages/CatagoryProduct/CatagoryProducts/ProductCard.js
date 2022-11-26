@@ -4,7 +4,7 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { BiTime } from "react-icons/bi";
 import { IoMdPricetags } from "react-icons/io";
 import Button from "../../../compenents/Button/Button";
-const ProductCard = ({ product, setBookNow }) => {
+const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
   const {
     date,
     location,
@@ -37,9 +37,13 @@ const ProductCard = ({ product, setBookNow }) => {
           <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
             {sellerName}
           </h1>
-          <p className="bg-blue-600 flex justify-center items-center text-white w-4 h-4 rounded-full">
+          {verifiedSellers.map((verifiedSeller) => console.log(verifiedSeller))}
+
+          {/* <p className="bg-blue-600 flex justify-center items-center text-white w-4 h-4 rounded-full">
             <AiFillStar className="text-xs" />
-          </p>
+          </p> 
+           verifiedSeller?.isVerifed === true && <p>verified</p>
+          */}
         </div>
         <div className="flex justify-between mt-3">
           <div className="flex items-center text-gray-700 dark:text-gray-200">

@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Loading from "../../../compenents/Loading/Loading";
@@ -6,8 +7,26 @@ import ProductCard from "./ProductCard";
 
 const CatagoryProducts = () => {
   const catagoryProduct = useLoaderData();
-  const [loaging, setLoading] = useState(true);
   const [isBookNow, setBookNow] = useState(null);
+
+  // verified seller get all
+  const url = "http://localhost:5000/users?role=Seller";
+  const { data: verifiedSellers = [], isLoading } = useQuery({
+    queryKey: ["verifiedsellers"],
+    queryFn: async () => {
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        return data;
+      } catch (err) {
+        console.log(err);
+      }
+    },
+  });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="my-8 sm:my-10 md:my-12 lg:my-14 px-4 sm:px-6 md:px-12 lg:px-20">
@@ -21,6 +40,7 @@ const CatagoryProducts = () => {
             key={product._id}
             product={product}
             setBookNow={setBookNow}
+            verifiedSellers={verifiedSellers}
           ></ProductCard>
         ))}
       </div>
