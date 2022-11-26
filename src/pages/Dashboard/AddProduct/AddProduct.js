@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { addProduct } from "../../../api/addProduct";
 import { getImageUrl } from "../../../api/imageUpload";
 import Loading from "../../../compenents/Loading/Loading";
@@ -9,6 +10,7 @@ import AddProductForm from "./AddProductForm";
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const { data: catagories = [], isLoading } = useQuery({
     queryKey: ["catagories"],
@@ -79,6 +81,7 @@ const AddProduct = () => {
               console.log(data);
               form.reset();
               toast.success("Products Added Successfully.");
+              navigate("/dashboard/myProducts");
             }
           })
           .catch((error) => console.log(error));

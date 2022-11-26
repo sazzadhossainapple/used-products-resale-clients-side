@@ -22,6 +22,19 @@ const AllSellerList = ({ seller, indx, refetch }) => {
       .catch((err) => console.log(err));
   };
 
+  const handleDeleteAction = (id) => {
+    fetch(`http://localhost:5000/seller/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          refetch();
+          toast.success(`Product deleted successfully.`);
+        }
+      });
+  };
+
   return (
     <tr>
       <th>{indx}</th>
@@ -51,7 +64,10 @@ const AllSellerList = ({ seller, indx, refetch }) => {
         )}
       </td>
       <td>
-        <button className="btn btn-xs border-none bg-red-500 hover:bg-red-600 mr-3">
+        <button
+          onClick={() => handleDeleteAction(_id)}
+          className="btn btn-xs border-none bg-red-500 hover:bg-red-600 mr-3"
+        >
           delete
         </button>
         <button
