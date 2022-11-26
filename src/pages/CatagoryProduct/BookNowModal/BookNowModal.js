@@ -42,7 +42,7 @@ const BookNowModal = ({ isBookNow, setBookNow }) => {
           setBookNow(null);
           form.reset();
           toast.success("Products is Booked");
-          navigate("/dashboard");
+          navigate("/dashboard/myOrders");
         } else {
           toast.error(data.message);
         }

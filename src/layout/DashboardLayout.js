@@ -5,14 +5,17 @@ import Navbar from "../pages/Shared/Navbar/Navbar";
 import { AiOutlineUserAdd, AiOutlineUsergroupAdd } from "react-icons/ai";
 import { BiLaptop } from "react-icons/bi";
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { GoReport } from "react-icons/go";
 import { RiProductHuntLine } from "react-icons/ri";
 import useAdmin from "../hooks/useAdmin";
 import useSeller from "../hooks/useSeller";
+import useByuer from "../hooks/useByuer";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
   const [isSeller] = useSeller(user?.email);
+  const [isBuyer] = useByuer(user?.email);
 
   return (
     <div>
@@ -45,15 +48,17 @@ const DashboardLayout = () => {
 
             <hr className="border-2 w-full mb-5" />
             <div>
-              <li className="mb-2">
-                <Link
-                  to="/dashboard"
-                  className="font-bold text-white bg-transparent hover:underline hover:underline-offset-4"
-                >
-                  <BiLaptop className="text-xl" />
-                  My Orders
-                </Link>
-              </li>
+              {isBuyer && (
+                <li className="mb-2">
+                  <Link
+                    to="/dashboard/myOrders"
+                    className="font-bold text-white bg-transparent hover:underline hover:underline-offset-4"
+                  >
+                    <BiLaptop className="text-xl" />
+                    My Orders
+                  </Link>
+                </li>
+              )}
               {isSeller && (
                 <>
                   <li className="mb-2">
@@ -94,6 +99,15 @@ const DashboardLayout = () => {
                     >
                       <AiOutlineUsergroupAdd className="text-xl" />
                       All Buyers
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/dashboard/reportedItems"
+                      className="font-bold text-white bg-transparent hover:underline hover:underline-offset-4"
+                    >
+                      <GoReport className="text-xl" />
+                      Reported Items
                     </Link>
                   </li>
                 </>

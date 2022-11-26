@@ -3,9 +3,11 @@ import { AiOutlineLaptop, AiOutlineCalendar, AiFillStar } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { BiTime } from "react-icons/bi";
 import { IoMdPricetags } from "react-icons/io";
-import Button from "../../../compenents/Button/Button";
+import { GoReport } from "react-icons/go";
+import toast from "react-hot-toast";
 const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
   const {
+    _id,
     date,
     location,
     orginalPrice,
@@ -17,6 +19,23 @@ const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
     useYear,
     email,
   } = product;
+
+  const handleReportedItem = (id) => {
+    fetch(`http://localhost:5000/reportedProduct/${id}`, {
+      method: "PATCH",
+      //   headers: {
+      //     authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      //   },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("You have reported this product!!");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
@@ -33,18 +52,33 @@ const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
       </div>
 
       <div className="px-6 py-4">
-        <div className="flex">
-          <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
-            {sellerName}
-          </h1>
-          {verifiedSellers.map((verifiedSeller) => console.log(verifiedSeller))}
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <div className="avatar">
+              <div className="w-8 rounded-full">
+                <img src="https://placeimg.com/192/192/people" alt="" />
+              </div>
+            </div>
+            <div>
+              <div className="flex">
+                <h1 className="text-xl font-semibold text-gray-800 dark:text-white">
+                  {sellerName}
+                </h1>
 
-          {/* <p className="bg-blue-600 flex justify-center items-center text-white w-4 h-4 rounded-full">
-            <AiFillStar className="text-xs" />
-          </p> 
-           verifiedSeller?.isVerifed === true && <p>verified</p>
-          */}
+                <p className="bg-blue-600 flex justify-center items-center text-white w-4 h-4 rounded-full ml-1">
+                  <AiFillStar className="text-xs" />
+                </p>
+              </div>
+              <p className="text-xs">Seller</p>
+            </div>
+          </div>
+          <div className="tooltip tooltip-error" data-tip="Report">
+            <button onClick={() => handleReportedItem(_id)}>
+              <GoReport className="text-xl" />
+            </button>
+          </div>
         </div>
+
         <div className="flex justify-between mt-3">
           <div className="flex items-center text-gray-700 dark:text-gray-200">
             <HiOutlineLocationMarker />
@@ -56,7 +90,7 @@ const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
           </div>
           <div className="flex items-center text-gray-700 dark:text-gray-200">
             <BiTime></BiTime>
-            <h1 className="px-2 text-sm">3 min ago</h1>
+            <h1 className="px-2 text-sm">{date}</h1>
           </div>
         </div>
 

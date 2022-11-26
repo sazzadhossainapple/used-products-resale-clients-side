@@ -55,7 +55,8 @@ const AddProduct = () => {
       condition,
       description,
       user?.displayName,
-      user?.email
+      user?.email,
+      user?.photoURL
     );
 
     getImageUrl(image)
@@ -73,6 +74,7 @@ const AddProduct = () => {
           description,
           sellerName: user?.displayName,
           email: user?.email,
+          sellerImage: user?.photoURL,
         };
 
         addProduct(products)
