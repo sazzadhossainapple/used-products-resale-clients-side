@@ -2,7 +2,14 @@ import React from "react";
 import toast from "react-hot-toast";
 
 const ProductListCard = ({ product, indx, refetch }) => {
-  const { _id, productImage, productName, resalePrice } = product;
+  const {
+    _id,
+    productImage,
+    productName,
+    resalePrice,
+    isSaleStatus,
+    isAdvertisement,
+  } = product;
 
   const handleDeleteAction = (id) => {
     fetch(`https://e-shoppers-server.vercel.app/sellerProduct/${id}`, {
@@ -17,6 +24,24 @@ const ProductListCard = ({ product, indx, refetch }) => {
       });
   };
 
+  const handleAdvertisement = (id) => {
+    fetch(`http://localhost:5000/sellerProduct/${id}`, {
+      method: "PATCH",
+      //   headers: {
+      //     authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      //   },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          toast.success("Advertisement successfully");
+          refetch();
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <tr>
       <th>{indx}</th>
@@ -29,7 +54,36 @@ const ProductListCard = ({ product, indx, refetch }) => {
       </td>
       <td>{productName}</td>
       <td>${resalePrice}</td>
-      <td>Blue</td>
+      <td>
+        {isSaleStatus === true ? (
+          <>
+            <p className="text-[#ffc600]">
+              <strong>Sold</strong>
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="">
+              <strong>Unsold</strong>
+            </p>
+          </>
+        )}
+      </td>
+      <td>
+        {isAdvertisement === true ? (
+          <>
+            <p className="text-primary">
+              <strong>Yes</strong>
+            </p>
+          </>
+        ) : (
+          <>
+            <p className="">
+              <strong>No</strong>
+            </p>
+          </>
+        )}
+      </td>
       <td>
         <button
           onClick={() => handleDeleteAction(_id)}
@@ -37,12 +91,15 @@ const ProductListCard = ({ product, indx, refetch }) => {
         >
           delete
         </button>
-        <button
-          className="btn btn-xs
+        {isAdvertisement !== true && (
+          <button
+            onClick={() => handleAdvertisement(_id)}
+            className="btn btn-xs
          bg-[#ffc600] border-none hover:bg-[#eebe0f] text-black"
-        >
-          advertise
-        </button>
+          >
+            advertise
+          </button>
+        )}
       </td>
     </tr>
   );

@@ -18,6 +18,7 @@ const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
     sellerName,
     useYear,
     email,
+    sellerImage,
   } = product;
 
   const handleReportedItem = (id) => {
@@ -56,7 +57,7 @@ const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
           <div className="flex items-center gap-2">
             <div className="avatar">
               <div className="w-8 rounded-full">
-                <img src="https://placeimg.com/192/192/people" alt="" />
+                <img src={sellerImage} alt="" />
               </div>
             </div>
             <div>

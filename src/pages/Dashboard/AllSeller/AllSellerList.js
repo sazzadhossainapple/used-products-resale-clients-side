@@ -70,13 +70,15 @@ const AllSellerList = ({ seller, indx, refetch }) => {
         >
           delete
         </button>
-        <button
-          onClick={() => handleVerifySeller(_id)}
-          className="btn btn-xs
-         bg-[#ffc600] border-none hover:bg-[#eebe0f] text-black"
-        >
-          Verify
-        </button>
+        {isVerifed !== true && (
+          <button
+            onClick={() => handleVerifySeller(_id)}
+            className="btn btn-xs
+       bg-[#ffc600] border-none hover:bg-[#eebe0f] text-black"
+          >
+            Verify
+          </button>
+        )}
       </td>
     </tr>
   );

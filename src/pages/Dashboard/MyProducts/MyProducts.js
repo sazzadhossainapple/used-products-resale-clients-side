@@ -50,6 +50,7 @@ const MyProducts = () => {
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Sales Status</th>
+                    <th>Advertisement</th>
                     <th>Action</th>
                   </tr>
                 </thead>
