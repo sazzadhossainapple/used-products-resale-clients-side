@@ -5,7 +5,10 @@ import { BiTime } from "react-icons/bi";
 import { IoMdPricetags } from "react-icons/io";
 import { GoReport } from "react-icons/go";
 import toast from "react-hot-toast";
+import moment from "moment";
+
 const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
+  console.log(product);
   const {
     _id,
     date,
@@ -19,6 +22,7 @@ const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
     useYear,
     email,
     sellerImage,
+    isSaleStatus,
   } = product;
 
   const handleReportedItem = (id) => {
@@ -39,12 +43,27 @@ const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
   };
 
   return (
-    <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+    <div className="w-full max-w-sm overflow-hidden relative bg-white rounded-lg shadow-lg dark:bg-gray-800">
       <img
         className="object-cover object-center w-full h-56"
         src={productImage}
         alt="avatar"
       />
+      <div className=" top-0 right-0 absolute">
+        {isSaleStatus === true ? (
+          <>
+            <h1 className="text-white bg-[#149777] font-bold py-2 px-3">
+              Sold
+            </h1>
+          </>
+        ) : (
+          <>
+            <h1 className="text-white bg-[#149777] font-bold py-2 px-3">
+              Available
+            </h1>
+          </>
+        )}
+      </div>
 
       <div className="flex items-center px-6 py-3 bg-gray-900">
         <AiOutlineLaptop className="text-white text-xl" />
@@ -91,17 +110,25 @@ const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
           </div>
           <div className="flex items-center text-gray-700 dark:text-gray-200">
             <BiTime></BiTime>
-            <h1 className="px-2 text-sm">{date}</h1>
+            <h1 className="px-2 text-sm">
+              {moment(date, "YYYYMMDD").fromNow()}
+            </h1>
           </div>
         </div>
 
-        <div className="flex items-center text-gray-700 dark:text-gray-200 my-4">
-          <IoMdPricetags className="text-xl"></IoMdPricetags>
-          <h1 className="px-2 text-xl">Resale: ${resalePrice}</h1>
-        </div>
-        <div className="flex items-center text-gray-700 dark:text-gray-200 my-4">
-          <IoMdPricetags className="text-xl"></IoMdPricetags>
-          <h1 className="px-2 text-xl">Orginal: ${orginalPrice}</h1>
+        <div className="flex justify-between">
+          <div className="flex items-center text-gray-700 dark:text-gray-200 my-4">
+            <IoMdPricetags className="text-xl"></IoMdPricetags>
+            <h1 className="px-2 text-base">
+              <strong>Sale: ${resalePrice}</strong>
+            </h1>
+          </div>
+          <div className="flex items-center text-gray-700 dark:text-gray-200 my-4">
+            <IoMdPricetags className="text-xl"></IoMdPricetags>
+            <h1 className="px-2 text-base">
+              <strong>Orginal: ${orginalPrice}</strong>
+            </h1>
+          </div>
         </div>
       </div>
       <label
