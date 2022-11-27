@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/UserContext/UserContext";
 
 const BookNowModal = ({ isBookNow, setBookNow }) => {
-  const { user } = useContext(AuthContext);
+  const { user, logOutUser } = useContext(AuthContext);
   const { productName, resalePrice, productImage } = isBookNow;
   const navigate = useNavigate();
 
@@ -28,14 +28,20 @@ const BookNowModal = ({ isBookNow, setBookNow }) => {
       location,
       productImage,
     };
-    fetch("http://localhost:5000/buyerBookProducts", {
+    fetch("https://e-shoppers-server.vercel.app/buyerBookProducts", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(buyerBookProduct),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOutUser();
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.acknowledged) {
           console.log(data);

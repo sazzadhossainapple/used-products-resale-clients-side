@@ -1,5 +1,5 @@
 export const addProduct = async (addProduct) => {
-  const url = `http://localhost:5000/addProducts`;
+  const url = `https://e-shoppers-server.vercel.app/addProducts`;
 
   const res = await fetch(url, {
     method: "POST",

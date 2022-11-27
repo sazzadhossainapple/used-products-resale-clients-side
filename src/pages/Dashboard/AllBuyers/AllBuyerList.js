@@ -5,7 +5,7 @@ const AllBuyerList = ({ buyer, indx, refetch }) => {
   const { _id, UserName, email, userImage, role } = buyer;
 
   const handleDeleteAction = (id) => {
-    fetch(`http://localhost:5000/buyer/${id}`, {
+    fetch(`https://e-shoppers-server.vercel.app/buyer/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/catagory/${params.id}`),
+          fetch(`https://e-shoppers-server.vercel.app/catagory/${params.id}`),
       },
     ],
   },

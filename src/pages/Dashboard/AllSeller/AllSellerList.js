@@ -5,7 +5,7 @@ const AllSellerList = ({ seller, indx, refetch }) => {
   const { _id, UserName, email, userImage, role, isVerifed } = seller;
 
   const handleVerifySeller = (id) => {
-    fetch(`http://localhost:5000/user/seller/${id}`, {
+    fetch(`https://e-shoppers-server.vercel.app/user/seller/${id}`, {
       method: "PATCH",
       //   headers: {
       //     authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -23,7 +23,7 @@ const AllSellerList = ({ seller, indx, refetch }) => {
   };
 
   const handleDeleteAction = (id) => {
-    fetch(`http://localhost:5000/seller/${id}`, {
+    fetch(`https://e-shoppers-server.vercel.app/seller/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

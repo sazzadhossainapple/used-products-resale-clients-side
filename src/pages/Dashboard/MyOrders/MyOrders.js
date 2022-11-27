@@ -5,16 +5,25 @@ import { AuthContext } from "../../../context/UserContext/UserContext";
 import BookProductsCard from "./BookProductsCard";
 
 const MyOrders = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOutUser } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/buyerBookProducts?email=${user?.email}`;
+  const url = `https://e-shoppers-server.vercel.app/buyerBookProducts?email=${user?.email}`;
 
   const { data: bookProducts = [], isLoading } = useQuery({
     queryKey: ["bookProducts", user?.email],
     queryFn: async () => {
-      const res = await fetch(url);
-      const data = await res.json();
-      return data;
+      const res = await fetch(url, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+
+      if (res.status === 401 || res.status === 403) {
+        return logOutUser();
+      } else {
+        const data = await res.json();
+        return data;
+      }
     },
   });
 

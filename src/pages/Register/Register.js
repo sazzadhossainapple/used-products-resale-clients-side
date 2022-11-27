@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -7,15 +7,24 @@ import { getImageUrl } from "../../api/imageUpload";
 import { saveUsers } from "../../api/saveUsers";
 import Button from "../../compenents/Button/Button";
 import { AuthContext } from "../../context/UserContext/UserContext";
+import useToken from "../../hooks/useToken";
 
 const Register = () => {
   const { createUser, userUpadetedProfile, signInWithGoogle } =
     useContext(AuthContext);
-
+  const [createUserEmail, setCreateUserEmail] = useState("");
+  const [token] = useToken(createUserEmail);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
+
+  // handle register
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -52,9 +61,9 @@ const Register = () => {
                   .then((data) => {
                     if (data.acknowledged) {
                       console.log(data);
+                      setCreateUserEmail(userInfo);
                       form.reset();
                       toast.success("User Created successfully");
-                      navigate(from, { replace: true });
                     }
                   })
                   .catch((err) => {
@@ -94,7 +103,7 @@ const Register = () => {
         };
 
         // database user save
-        fetch(`http://localhost:5000/users/${user?.email}`, {
+        fetch(`https://e-shoppers-server.vercel.app/users/${user?.email}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",
@@ -105,8 +114,8 @@ const Register = () => {
           .then((data) => {
             if (data.acknowledged) {
               console.log(data);
+              setCreateUserEmail(userInfo);
               toast.success("User Created successfully");
-              navigate(from, { replace: true });
             }
           })
           .catch((error) => {

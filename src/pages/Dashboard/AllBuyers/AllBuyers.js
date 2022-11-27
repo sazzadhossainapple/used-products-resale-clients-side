@@ -4,7 +4,7 @@ import Loading from "../../../compenents/Loading/Loading";
 import AllBuyerList from "./AllBuyerList";
 
 const AllBuyers = () => {
-  const url = `http://localhost:5000/users?role=Buyer`;
+  const url = `https://e-shoppers-server.vercel.app/users?role=Buyer`;
 
   const {
     data: allBuyers = [],

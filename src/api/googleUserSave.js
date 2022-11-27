@@ -1,5 +1,5 @@
 const googleUserSave = async (usersInfo) => {
-  const url = `http://localhost:5000/users`;
+  const url = `https://e-shoppers-server.vercel.app/users`;
 
   const res = await fetch(url, {
     method: "PUT",

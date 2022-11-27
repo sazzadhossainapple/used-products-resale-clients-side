@@ -10,7 +10,7 @@ const CatagoryProducts = () => {
   const [isBookNow, setBookNow] = useState(null);
 
   // verified seller get all
-  const url = "http://localhost:5000/users?role=Seller";
+  const url = "https://e-shoppers-server.vercel.app/users?role=Seller";
   const { data: verifiedSellers = [], isLoading } = useQuery({
     queryKey: ["verifiedsellers"],
     queryFn: async () => {

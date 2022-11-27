@@ -1,19 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../../compenents/Button/Button";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { AuthContext } from "../../context/UserContext/UserContext";
 import toast from "react-hot-toast";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
   const { logInUser, signInWithGoogle } = useContext(AuthContext);
-
+  const [loginUserEmail, setLoginUserEmail] = useState("");
+  const [token] = useToken(loginUserEmail);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const [showPassword, setShowPassword] = useState(false);
 
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, from, navigate]);
+
+  //handle login
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -24,9 +33,9 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setLoginUserEmail(user);
         form.reset();
         toast.success("User login successfully");
-        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
@@ -39,7 +48,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-
+        setLoginUserEmail(user);
         const userInfo = {
           UserName: user?.displayName,
           email: user?.email,
@@ -49,7 +58,7 @@ const Login = () => {
         };
 
         // database user save
-        fetch(`http://localhost:5000/users/${user?.email}`, {
+        fetch(`https://e-shoppers-server.vercel.app/users/${user?.email}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",
@@ -61,7 +70,6 @@ const Login = () => {
             if (data.acknowledged) {
               console.log(data);
               toast.success("User Created successfully");
-              navigate(from, { replace: true });
             }
           })
           .catch((error) => {

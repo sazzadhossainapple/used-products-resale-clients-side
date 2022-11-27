@@ -7,7 +7,7 @@ import ProductListCard from "./ProductListCard";
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/sellerProduct/${user?.email}`;
+  const url = `https://e-shoppers-server.vercel.app/sellerProduct/${user?.email}`;
 
   const {
     data: myProducts = [],

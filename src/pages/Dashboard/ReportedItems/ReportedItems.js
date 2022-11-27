@@ -4,7 +4,7 @@ import Loading from "../../../compenents/Loading/Loading";
 import ReportedItemList from "./ReportedItemList";
 
 const ReportedItems = () => {
-  const url = "http://localhost:5000/reportedProduct";
+  const url = "https://e-shoppers-server.vercel.app/reportedProduct";
 
   const {
     data: allReportedProduct = [],

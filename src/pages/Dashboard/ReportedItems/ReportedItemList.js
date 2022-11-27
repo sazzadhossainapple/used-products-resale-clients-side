@@ -5,7 +5,7 @@ const ReportedItemList = ({ reportedProduct, indx, refetch }) => {
   const { _id, productImage, productName, sellerName, email } = reportedProduct;
 
   const handleDeleteAction = (id) => {
-    fetch(`http://localhost:5000/reportedProduct/${id}`, {
+    fetch(`https://e-shoppers-server.vercel.app/reportedProduct/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

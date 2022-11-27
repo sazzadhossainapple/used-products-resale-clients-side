@@ -21,7 +21,7 @@ const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
   } = product;
 
   const handleReportedItem = (id) => {
-    fetch(`http://localhost:5000/reportedProduct/${id}`, {
+    fetch(`https://e-shoppers-server.vercel.app/reportedProduct/${id}`, {
       method: "PATCH",
       //   headers: {
       //     authorization: `bearer ${localStorage.getItem("accessToken")}`,

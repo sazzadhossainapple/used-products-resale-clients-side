@@ -8,7 +8,9 @@ const ProductsCatagory = () => {
     queryKey: ["catagories"],
     queryFn: async () => {
       try {
-        const res = await fetch("http://localhost:5000/allcatagory");
+        const res = await fetch(
+          "https://e-shoppers-server.vercel.app/allcatagory"
+        );
         const data = await res.json();
         return data;
       } catch (error) {

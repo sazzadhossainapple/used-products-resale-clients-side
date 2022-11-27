@@ -5,7 +5,7 @@ const ProductListCard = ({ product, indx, refetch }) => {
   const { _id, productImage, productName, resalePrice } = product;
 
   const handleDeleteAction = (id) => {
-    fetch(`http://localhost:5000/sellerProduct/${id}`, {
+    fetch(`https://e-shoppers-server.vercel.app/sellerProduct/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
