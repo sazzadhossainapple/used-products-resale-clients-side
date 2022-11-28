@@ -25,7 +25,7 @@ const ProductListCard = ({ product, indx, refetch }) => {
   };
 
   const handleAdvertisement = (id) => {
-    fetch(`http://localhost:5000/sellerProduct/${id}`, {
+    fetch(`https://e-shoppers-server.vercel.app/sellerProduct/${id}`, {
       method: "PATCH",
       //   headers: {
       //     authorization: `bearer ${localStorage.getItem("accessToken")}`,

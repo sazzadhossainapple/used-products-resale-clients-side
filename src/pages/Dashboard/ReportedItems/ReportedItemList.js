@@ -19,7 +19,7 @@ const ReportedItemList = ({ reportedProduct, indx, refetch }) => {
 
   return (
     <tr>
-      <th>{indx}</th>
+      <th>{_id}</th>
       <td>
         <div className="avatar">
           <div className="w-12 rounded-full">

@@ -75,7 +75,9 @@ export const router = createBrowserRouter([
           </BuyerRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/buyerBookProducts/${params.id}`),
+          fetch(
+            `https://e-shoppers-server.vercel.app/buyerBookProducts/${params.id}`
+          ),
       },
       {
         path: "/dashboard/addProduct",

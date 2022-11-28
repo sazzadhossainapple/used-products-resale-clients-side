@@ -7,9 +7,6 @@ const AllSellerList = ({ seller, indx, refetch }) => {
   const handleVerifySeller = (id) => {
     fetch(`https://e-shoppers-server.vercel.app/user/seller/${id}`, {
       method: "PATCH",
-      //   headers: {
-      //     authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      //   },
     })
       .then((res) => res.json())
       .then((data) => {

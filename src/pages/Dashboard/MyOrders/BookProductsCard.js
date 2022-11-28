@@ -32,7 +32,9 @@ const BookProductsCard = ({ bookProduct }) => {
             </Link>
           )}
 
-          {price && isSaleStatus && <span className="text-primary">Pay</span>}
+          {price && isSaleStatus && (
+            <span className="text-[#111111] font-bold">Paid</span>
+          )}
         </div>
       </div>
     </div>

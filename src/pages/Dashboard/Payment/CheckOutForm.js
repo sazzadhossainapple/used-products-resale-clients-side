@@ -10,11 +10,11 @@ const CheckOutForm = ({ booking }) => {
   const stripe = useStripe();
   const elements = useElements();
 
-  const { price, name, isSaleStatus, email, _id } = booking;
+  const { price, name, email, _id, bookingId } = booking;
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://e-shoppers-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -74,9 +74,9 @@ const CheckOutForm = ({ booking }) => {
         transactionId: paymentIntent.id,
         email,
         bookId: _id,
-        isSaleStatus,
+        bookingId,
       };
-      fetch("http://localhost:5000/payments", {
+      fetch("https://e-shoppers-server.vercel.app/payments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -125,11 +125,11 @@ const CheckOutForm = ({ booking }) => {
       </form>
       <p className="text-red-600">{cardError}</p>
       {success && (
-        <div>
+        <div className="mt-4">
           <p className="text-green-500">{success}</p>
           <p>
-            Your transactionId:
-            <span className="font-bold"> {transactionId}</span>
+            TransactionId:{""}
+            <strong className="ml-1">{transactionId}</strong>
           </p>
         </div>
       )}

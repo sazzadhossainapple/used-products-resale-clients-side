@@ -11,7 +11,7 @@ const ReportedItems = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["llReportedProduct"],
+    queryKey: ["allReportedProduct"],
     queryFn: async () => {
       const res = await fetch(url);
       const data = await res.json();
@@ -33,16 +33,16 @@ const ReportedItems = () => {
         </>
       ) : (
         <>
-          <section className="max-w-4xl my-8 sm:my-8 md:my-10 lg:my-12 p-6 mx-auto ">
+          <section className="max-w-5xl my-8 sm:my-8 md:my-10 lg:my-12 p-6 mx-auto ">
             <div className=" mb-10 sm:mb-16 text-center flex justify-center ">
-              <h1 className=" text-3xl font-bold  italic">All Seller</h1>
+              <h1 className=" text-3xl font-bold  italic">Reported Product</h1>
               <hr className="border-2 w-7 border-[#149777]" />
             </div>
             <div className="overflow-x-auto">
               <table className="table w-full">
                 <thead>
                   <tr>
-                    <th></th>
+                    <th>Id</th>
                     <th>Image</th>
                     <th>Product Name</th>
                     <th>Seller Name</th>

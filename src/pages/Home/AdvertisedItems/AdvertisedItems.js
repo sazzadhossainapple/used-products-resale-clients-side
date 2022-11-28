@@ -4,7 +4,7 @@ import Loading from "../../../compenents/Loading/Loading";
 import AdvertisedCard from "./AdvertisedCard";
 
 const AdvertisedItems = () => {
-  const url = `http://localhost:5000/advertisement`;
+  const url = `https://e-shoppers-server.vercel.app/advertisement`;
 
   const { data: advertisements = [], isLoading } = useQuery({
     queryKey: ["advertisements"],

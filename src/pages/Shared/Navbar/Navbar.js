@@ -23,7 +23,7 @@ const Navbar = () => {
         </Link>
       </li>
       {user?.email && (
-        <li className="mr-3">
+        <li className="mr-3 hidden  lg:flex ">
           <Link
             className="text-lg hover:bg-[#ffc600] hover:text-[#111111]  rounded-md"
             to="/dashboard"
@@ -33,13 +33,29 @@ const Navbar = () => {
         </li>
       )}
       {user?.email && (
-        <li>
-          <label
-            htmlFor="dashboard-drawer"
-            className=" text-white drawer-button lg:hidden"
-          >
-            My bord
-          </label>
+        <li tabIndex={0} className="flex lg:hidden">
+          <Link to="/dashboard" className="hover:bg-[#ffc600] hover:text-black">
+            Dashboard
+            <svg
+              className="fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+            >
+              <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+            </svg>
+          </Link>
+          <ul className="p-2 bg-[#149777]">
+            <li>
+              <label
+                htmlFor="dashboard-drawer"
+                className=" text-white drawer-button lg:hidden"
+              >
+                Dashboard
+              </label>
+            </li>
+          </ul>
         </li>
       )}
       <li className="mr-3">

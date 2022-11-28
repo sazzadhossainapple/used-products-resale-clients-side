@@ -14,10 +14,10 @@ const Payment = () => {
   const { itemName, price } = booking;
 
   return (
-    <div className="flex justify-center items-center">
-      <div>
-        <h1 className="text-3xl">Payment for {itemName}</h1>
-        <p>
+    <div className="flex min-h-full justify-center items-center">
+      <div className="border p-8 rounded-md">
+        <h1 className="text-2xl">Payment for {itemName}</h1>
+        <p className="mt-2 mb-4">
           Please pay <strong>${price}</strong>
         </p>
         <div className="w-96 my-12">
