@@ -18,6 +18,7 @@ import SellerRoutes from "../SellerRoutes/SellerRoutes";
 import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
 import BuyerRoutes from "../BuyerRoutes/BuyerRoutes";
 import ReportedItems from "../../pages/Dashboard/ReportedItems/ReportedItems";
+import Payment from "../../pages/Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -64,6 +65,17 @@ export const router = createBrowserRouter([
             <MyOrders />
           </BuyerRoutes>
         ),
+      },
+
+      {
+        path: "/dashboard/payment/:id",
+        element: (
+          <BuyerRoutes>
+            <Payment />
+          </BuyerRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/buyerBookProducts/${params.id}`),
       },
       {
         path: "/dashboard/addProduct",

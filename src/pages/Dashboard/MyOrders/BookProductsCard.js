@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const BookProductsCard = ({ bookProduct }) => {
-  const { productImage, itemName, price } = bookProduct;
+  const { _id, productImage, itemName, price, isSaleStatus } = bookProduct;
+
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-sm mx-auto">
       <div
@@ -22,9 +24,15 @@ const BookProductsCard = ({ bookProduct }) => {
           <span className="font-bold text-gray-800 dark:text-gray-200">
             ${price}
           </span>
-          <button className="btn btn-xs bg-[#ffc600] rounded-md  text-[#111111] border-none hover:bg-[#eebe0f]">
-            Payment
-          </button>
+          {price && !isSaleStatus && (
+            <Link to={`/dashboard/payment/${_id}`}>
+              <button className="btn btn-xs bg-[#ffc600] rounded-md  text-[#111111] border-none hover:bg-[#eebe0f]">
+                Payment
+              </button>
+            </Link>
+          )}
+
+          {price && isSaleStatus && <span className="text-primary">Pay</span>}
         </div>
       </div>
     </div>

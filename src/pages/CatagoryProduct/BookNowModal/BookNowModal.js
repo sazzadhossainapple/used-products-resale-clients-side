@@ -5,7 +5,8 @@ import { AuthContext } from "../../../context/UserContext/UserContext";
 
 const BookNowModal = ({ isBookNow, setBookNow }) => {
   const { user, logOutUser } = useContext(AuthContext);
-  const { productName, resalePrice, productImage } = isBookNow;
+  const { _id, isSaleStatus, productName, resalePrice, productImage } =
+    isBookNow;
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -20,6 +21,8 @@ const BookNowModal = ({ isBookNow, setBookNow }) => {
     const location = form.location.value;
 
     const buyerBookProduct = {
+      bookingId: _id,
+      isSaleStatus,
       name,
       email,
       itemName,

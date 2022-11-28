@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AiOutlineLaptop, AiOutlineCalendar, AiFillStar } from "react-icons/ai";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { BiTime } from "react-icons/bi";
@@ -6,24 +6,27 @@ import { IoMdPricetags } from "react-icons/io";
 import { GoReport } from "react-icons/go";
 import toast from "react-hot-toast";
 import moment from "moment";
+import VerfiedUser from "./VerfiedUser";
 
-const ProductCard = ({ product, setBookNow, verifiedSellers }) => {
-  console.log(product);
+const ProductCard = ({ product, setBookNow, allSellers }) => {
   const {
     _id,
     date,
     location,
     orginalPrice,
-    phoneNumber,
     productImage,
     productName,
     resalePrice,
     sellerName,
     useYear,
-    email,
     sellerImage,
     isSaleStatus,
   } = product;
+
+  // allUsers.map((user) => {
+  //   console.log(user?.isVerifed);
+  //   isUserVerified(user?.isVerifed);
+  // });
 
   const handleReportedItem = (id) => {
     fetch(`https://e-shoppers-server.vercel.app/reportedProduct/${id}`, {
