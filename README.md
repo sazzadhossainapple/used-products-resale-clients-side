@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# E-Shoppers Website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Website Link[e-shoppers](https://e-shoppers-4c7ba.web.app/).
 
-## Available Scripts
+## Admin Access
 
-In the project directory, you can run:
+adminEmail: sazzadhossainapple@gmail.com
+adminPassword: 123456
 
-### `npm start`
+### Live Website Link
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+https://e-shoppers-4c7ba.web.app/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Description
 
-### `npm test`
+-> The latest technology is used in this website, React JS is used in FrontEnd, and Node Js and Express Js are used in the Backend. And the database is connected to the database using MongoDB.\
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-> Buyers can buy resale laptops and sellers can sell their used laptops on this website. For that, you have to register the login and choose the account type whether it is buyer or seller.\
 
-### `npm run build`
+-> Three types of users can access this website: Buyer, Seller, and Admin. Buyers can buy a resale laptop from here. By booking a laptop, the buyer will show his products on the dashboard and the seller can add and delete his products from the dashboard. Admin can see All Sellers and All Buyers and can delete any buyer and seller.\
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-> If the buyer books a laptop, then he can pay online through the card for the laptop ordered by him.\
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+-> The online payment system is implemented on the E-Shoppers website by using react stripe.\
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-> If the seller wants to advertise any of his resale laptops, he can do so. It gives an option button from my product on its dashboard when that button is clicked. That product will show as a home page advertisement. And any buyer can see that advertisement product.
 
-### `npm run eject`
+### Use Technology
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React Js\
+- Node Js\
+- Express Js\
+- MongoDB Database\
+- CSS Framework (Tailwind CSS)\
+- React Query\
+- Firebase Authentication\
+- Axios\
+- React Router\
+- React Stripe
