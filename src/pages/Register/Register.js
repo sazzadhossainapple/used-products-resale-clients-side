@@ -120,12 +120,12 @@ const Register = () => {
           })
           .catch((error) => {
             console.log(error);
-            toast.error(error.meassage);
+            toast.error(error.massage);
           });
       })
       .catch((error) => {
         console.error(error);
-        toast.error(error.meassage);
+        toast.error(error.massage);
       });
   };
 

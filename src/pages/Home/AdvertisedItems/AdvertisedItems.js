@@ -9,7 +9,11 @@ const AdvertisedItems = () => {
   const { data: advertisements = [], isLoading } = useQuery({
     queryKey: ["advertisements"],
     queryFn: async () => {
-      const res = await fetch(url);
+      const res = await fetch(url, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
       const data = await res.json();
       return data;
     },

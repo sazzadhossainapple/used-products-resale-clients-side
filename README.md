@@ -1,6 +1,6 @@
 # E-Shoppers Website
 
-Live Website Link g[e-shoppers](https://e-shoppers-4c7ba.web.app/).
+Live Website Link [e-shoppers](https://e-shoppers-4c7ba.web.app/).
 
 ## Admin Access
 
