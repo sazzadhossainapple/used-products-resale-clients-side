@@ -58,12 +58,29 @@ const Navbar = () => {
           </ul>
         </li>
       )}
+
+      <li className="mr-3">
+        <Link
+          className="text-lg hover:bg-[#ffc600] hover:text-[#111111]  rounded-md"
+          to="/about"
+        >
+          About Us
+        </Link>
+      </li>
       <li className="mr-3">
         <Link
           className="text-lg hover:bg-[#ffc600] hover:text-[#111111]  rounded-md"
           to="/blog"
         >
           Blog
+        </Link>
+      </li>
+      <li className="mr-3">
+        <Link
+          className="text-lg hover:bg-[#ffc600] hover:text-[#111111]  rounded-md"
+          to="/contact"
+        >
+          Contact Us
         </Link>
       </li>
     </>

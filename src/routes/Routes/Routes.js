@@ -19,6 +19,8 @@ import Dashboard from "../../pages/Dashboard/Dashboard/Dashboard";
 import BuyerRoutes from "../BuyerRoutes/BuyerRoutes";
 import ReportedItems from "../../pages/Dashboard/ReportedItems/ReportedItems";
 import Payment from "../../pages/Dashboard/Payment/Payment";
+import About from "../../pages/About/About";
+import Contact from "../../pages/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -29,15 +31,13 @@ export const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/home", element: <Home /> },
       { path: "/blog", element: <Blog /> },
+      { path: "/about", element: <About /> },
+      { path: "/contact", element: <Contact /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       {
         path: "/catagory/:id",
-        element: (
-          <PrivateRoutes>
-            <CatagoryProducts />
-          </PrivateRoutes>
-        ),
+        element: <CatagoryProducts />,
         loader: ({ params }) =>
           fetch(`https://e-shoppers-server.vercel.app/catagory/${params.id}`),
       },
