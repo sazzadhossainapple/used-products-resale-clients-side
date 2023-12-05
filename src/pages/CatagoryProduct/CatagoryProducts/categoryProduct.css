@@ -1,0 +1,32 @@
+/* pagination.css */
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.625rem; /* Adjust the gap between pagination items */
+}
+
+.page-item {
+    list-style: none;
+    margin: 0;
+}
+
+.page-link {
+    display: inline-block;
+    padding: 0.375rem 0.75rem;
+    color: #4a5568; /* Adjust the color of the pagination links */
+    background-color: #cbd5e0; /* Adjust the background color of the pagination links */
+    border: 1px solid #cbd5e0; /* Adjust the border color of the pagination links */
+    border-radius: 0.25rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-link:hover {
+    background-color: #2d3748; /* Adjust the background color on hover */
+    color: #ffffff; /* Adjust the color on hover */
+}
+
+.active .page-link {
+    background-color: #2d3748; /* Adjust the background color of the active page */
+    color: #ffffff; /* Adjust the color of the active page */
+}

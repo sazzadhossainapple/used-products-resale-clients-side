@@ -21,6 +21,7 @@ import ReportedItems from '../../pages/Dashboard/ReportedItems/ReportedItems';
 import Payment from '../../pages/Dashboard/Payment/Payment';
 import About from '../../pages/About/About';
 import Contact from '../../pages/Contact/Contact';
+import BlogSingle from '../../pages/BlogSingle/BlogSingle';
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
                     fetch(
                         `${process.env.REACT_APP_URL}/api/allcatagory/${params.id}`
                     ),
+            },
+            {
+                path: '/blog/blog-details',
+                element: <BlogSingle />,
             },
         ],
     },

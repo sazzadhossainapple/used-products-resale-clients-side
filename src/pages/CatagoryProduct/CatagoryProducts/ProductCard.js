@@ -7,7 +7,7 @@ import { GoReport } from 'react-icons/go';
 import toast from 'react-hot-toast';
 import moment from 'moment';
 
-const ProductCard = ({ product, setBookNow, allSellers }) => {
+const ProductCard = ({ product, setBookNow }) => {
     const {
         _id,
         createdAt,

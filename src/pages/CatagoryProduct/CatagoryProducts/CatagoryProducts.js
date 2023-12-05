@@ -5,30 +5,16 @@ import Loading from '../../../compenents/Loading/Loading';
 import BookNowModal from '../BookNowModal/BookNowModal';
 import ProductCard from './ProductCard';
 import ReactPaginate from 'react-paginate';
+import './categoryProduct.css';
 
 const CatagoryProducts = () => {
     const catagoryProduct = useLoaderData();
     const [isBookNow, setBookNow] = useState(null);
     const [allProduct, setAllProduct] = useState([]);
     const [isLoadings, setIsLoadings] = useState(true);
-    const [limit, setLimit] = useState(3);
+    const [limit, setLimit] = useState(6);
     const [pageCount, setPageCount] = useState(1);
     const currentPage = useRef();
-
-    // verified seller get all
-    const url = 'https://e-shoppers-server.vercel.app/users?role=Seller';
-    const { data: allSellers = [], isLoading } = useQuery({
-        queryKey: ['allSellers'],
-        queryFn: async () => {
-            try {
-                const res = await fetch(url);
-                const data = await res.json();
-                return data;
-            } catch (err) {
-                console.log(err);
-            }
-        },
-    });
 
     useEffect(() => {
         currentPage.current = 1;
@@ -57,10 +43,6 @@ const CatagoryProducts = () => {
             });
     }
 
-    if (isLoading) {
-        return <Loading></Loading>;
-    }
-
     if (isLoadings) {
         return <Loading></Loading>;
     }
@@ -77,7 +59,6 @@ const CatagoryProducts = () => {
                         key={product._id}
                         product={product}
                         setBookNow={setBookNow}
-                        allSellers={allSellers}
                     ></ProductCard>
                 ))}
             </div>
@@ -88,17 +69,17 @@ const CatagoryProducts = () => {
                 ></BookNowModal>
             )}
 
-            <div className="">
+            <div className="mt-10">
                 <ReactPaginate
                     breakLabel="......."
-                    nextLabel="next >"
+                    nextLabel=">>"
                     onPageChange={handlePageClick}
                     pageRangeDisplayed={5}
                     pageCount={pageCount}
-                    previousLabel="< previous"
+                    previousLabel="<<"
                     renderOnZeroPageCount={null}
                     marginPagesDisplayed={2}
-                    containerClassName="pagination justify-content-center"
+                    containerClassName="pagination flex justify-end	 gap-2.5"
                     pageClassName="page-item"
                     pageLinkClassName="page-link"
                     previousClassName="page-item"

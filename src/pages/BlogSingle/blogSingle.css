@@ -1,0 +1,29 @@
+.title-area {
+    border: 2px solid var(--primary-color);
+    padding: 10px 30px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.blog-details-img {
+    height: 500px !important;
+    margin-top: 2.5rem;
+}
+.blog-single-title h4 {
+    color: var(--primary-color);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 36px;
+}
+.blog-text-desc {
+    color: #212529;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    padding-top: 15px !important;
+}
+.share-icon {
+    font-size: 20px;
+    color: var(--primary-color) !important;
+}
