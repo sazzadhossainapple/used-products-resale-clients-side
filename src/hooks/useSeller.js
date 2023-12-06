@@ -1,21 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-const useSeller = (email) => {
-  const [isSeller, setIsSeller] = useState(false);
-  const [isSellerLoading, setIsSellerLoading] = useState(true);
+const useSeller = () => {
+    const [isSeller, setIsSeller] = useState(false);
+    const [isSellerLoading, setIsSellerLoading] = useState(true);
+    const token = localStorage.getItem('accessToken');
 
-  useEffect(() => {
-    if (email) {
-      fetch(`https://e-shoppers-server.vercel.app/users/seller/${email}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setIsSeller(data?.isSeller);
-          setIsSellerLoading(false);
-        });
-    }
-  }, [email]);
+    useEffect(() => {
+        if (token) {
+            fetch(`${process.env.REACT_APP_URL}/api/users/seller`)
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log(data);
+                    setIsSeller(data?.isSeller);
+                    setIsSellerLoading(false);
+                });
+        } else {
+            setIsSellerLoading(false);
+        }
+    }, []);
 
-  return [isSeller, isSellerLoading];
+    return [isSeller, isSellerLoading];
 };
 
 export default useSeller;
