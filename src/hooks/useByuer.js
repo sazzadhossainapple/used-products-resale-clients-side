@@ -1,21 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-const useByuer = (email) => {
-  const [isBuyer, setIsBuyer] = useState(false);
-  const [isBuyerLoading, setIsBuyerLoading] = useState(true);
+const useByuer = () => {
+    const [isBuyer, setIsBuyer] = useState(false);
+    const [isBuyerLoading, setIsBuyerLoading] = useState(true);
+    const token = localStorage.getItem('accessToken');
 
-  useEffect(() => {
-    if (email) {
-      fetch(`https://e-shoppers-server.vercel.app/users/buyer/${email}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setIsBuyer(data?.isBuyer);
-          setIsBuyerLoading(false);
-        });
-    }
-  }, [email]);
+    useEffect(() => {
+        if (token) {
+            fetch(`${process.env.REACT_APP_URL}/api/users/buyer`, {
+                method: 'GET',
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    setIsBuyer(data?.data);
+                    setIsBuyerLoading(false);
+                });
+        } else {
+            setIsBuyerLoading(false);
+        }
+    }, []);
 
-  return [isBuyer, isBuyerLoading];
+    return [isBuyer, isBuyerLoading];
 };
 
 export default useByuer;

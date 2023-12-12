@@ -56,6 +56,8 @@ const Register = () => {
                                     role: role,
                                 };
 
+                                console.log(userInfo);
+
                                 // database user save
                                 saveUsers(userInfo)
                                     .then((data) => {
@@ -70,22 +72,22 @@ const Register = () => {
                                     })
                                     .catch((err) => {
                                         console.log(err);
-                                        toast.error(err.meassage);
+                                        toast.error(err?.message);
                                     });
                             })
                             .catch((err) => {
                                 console.log(err);
-                                toast.error(err.meassage);
+                                toast.error(err?.message);
                             });
                     })
                     .catch((err) => {
                         console.error(err);
-                        toast.error(err.meassage);
+                        toast.error(err?.message);
                     });
             })
             .catch((err) => {
                 console.error(err);
-                toast.error(err.meassage);
+                toast.error(err?.message);
             });
     };
 
