@@ -22,6 +22,7 @@ import Payment from '../../pages/Dashboard/Payment/Payment';
 import About from '../../pages/About/About';
 import Contact from '../../pages/Contact/Contact';
 import BlogSingle from '../../pages/BlogSingle/BlogSingle';
+import ProductDetails from '../../pages/ProductDetails/ProductDetails';
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,15 @@ export const router = createBrowserRouter([
                 loader: ({ params }) =>
                     fetch(
                         `${process.env.REACT_APP_URL}/api/allcatagory/${params.id}`
+                    ),
+            },
+
+            {
+                path: '/product/:id',
+                element: <ProductDetails />,
+                loader: ({ params }) =>
+                    fetch(
+                        `${process.env.REACT_APP_URL}/api/products/${params.id}`
                     ),
             },
             {

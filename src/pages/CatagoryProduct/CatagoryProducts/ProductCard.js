@@ -6,6 +6,7 @@ import { IoMdPricetags } from 'react-icons/io';
 import { GoReport } from 'react-icons/go';
 import toast from 'react-hot-toast';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product, setBookNow }) => {
     const {
@@ -20,6 +21,7 @@ const ProductCard = ({ product, setBookNow }) => {
         useYear,
         sellerImage,
         isSaleStatus,
+        product_slug,
     } = product;
 
     const handleReportedItem = (id) => {
@@ -136,13 +138,22 @@ const ProductCard = ({ product, setBookNow }) => {
                         </div>
                     </div>
 
-                    <label
+                    <div>
+                        <Link
+                            to={`/product/${product_slug}`}
+                            className="btn w-full bg-[#ffc600] rounded-md  text-[#111111] border-none hover:bg-[#eebe0f]"
+                        >
+                            Product Details
+                        </Link>
+                    </div>
+
+                    {/* <label
                         onClick={() => setBookNow(product)}
                         htmlFor="bookNow"
                         className="btn w-full bg-[#ffc600] rounded-md  text-[#111111] border-none hover:bg-[#eebe0f]"
                     >
                         Book Now
-                    </label>
+                    </label> */}
                 </div>
             )}
         </>
