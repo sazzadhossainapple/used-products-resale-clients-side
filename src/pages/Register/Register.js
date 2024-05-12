@@ -32,48 +32,37 @@ const Register = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        const image = form.image.files[0];
         const role = form.role.value;
+        console.log(name, email, password, role);
 
-        console.log(name, email, password, role, image);
+        // create a user
+        createUser(email, password)
+            .then((result) => {
+                const user = result.user;
+                console.log(user);
 
-        getImageUrl(image)
-            .then((imageData) => {
-                // create a user
-                createUser(email, password)
-                    .then((result) => {
-                        const user = result.user;
-                        console.log(user);
+                //update name image
+                userUpadetedProfile(name)
+                    .then(() => {
+                        const userInfo = {
+                            UserName: name,
+                            email: email,
+                            userImage: '',
+                            isVerifed: false,
+                            role: role,
+                        };
 
-                        //update name image
-                        userUpadetedProfile(name, imageData)
-                            .then(() => {
-                                const userInfo = {
-                                    UserName: name,
-                                    email: email,
-                                    isVerifed: false,
-                                    userImage: imageData,
-                                    role: role,
-                                };
+                        console.log(userInfo);
 
-                                console.log(userInfo);
-
-                                // database user save
-                                saveUsers(userInfo)
-                                    .then((data) => {
-                                        if (data.success) {
-                                            console.log(data);
-                                            setCreateUserEmail(userInfo);
-                                            form.reset();
-                                            toast.success(
-                                                'User Created successfully'
-                                            );
-                                        }
-                                    })
-                                    .catch((err) => {
-                                        console.log(err);
-                                        toast.error(err?.message);
-                                    });
+                        // database user save
+                        saveUsers(userInfo)
+                            .then((data) => {
+                                if (data.success) {
+                                    console.log(data);
+                                    setCreateUserEmail(userInfo);
+                                    form.reset();
+                                    toast.success('User Created successfully');
+                                }
                             })
                             .catch((err) => {
                                 console.log(err);
@@ -81,7 +70,7 @@ const Register = () => {
                             });
                     })
                     .catch((err) => {
-                        console.error(err);
+                        console.log(err);
                         toast.error(err?.message);
                     });
             })
@@ -101,22 +90,19 @@ const Register = () => {
                 const userInfo = {
                     UserName: user?.displayName,
                     email: user?.email,
-                    isVerifed: false,
+                    isVerifed: true,
                     userImage: user.photoURL,
                     role: 'Buyer',
                 };
 
                 // database user save
-                fetch(
-                    `https://e-shoppers-server.vercel.app/users/${user?.email}`,
-                    {
-                        method: 'PUT',
-                        headers: {
-                            'content-type': 'application/json',
-                        },
-                        body: JSON.stringify(userInfo),
-                    }
-                )
+                fetch(`${process.env.REACT_APP_URL}/api/users/${user?.email}`, {
+                    method: 'PUT',
+                    headers: {
+                        'content-type': 'application/json',
+                    },
+                    body: JSON.stringify(userInfo),
+                })
                     .then((res) => res.json())
                     .then((data) => {
                         if (data.acknowledged) {
@@ -188,21 +174,7 @@ const Register = () => {
                                     className="input w-full pr-10 rounded-md input-bordered focus:outline-none "
                                 />
                             </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">
-                                        Your Image
-                                    </span>
-                                </label>
-                                <input
-                                    type="file"
-                                    name="image"
-                                    accept="image/*"
-                                    placeholder="Your Image"
-                                    required
-                                    className="file-input  file-input-bordered rounded-md w-full  focus:outline-none"
-                                />
-                            </div>
+
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">
@@ -210,15 +182,26 @@ const Register = () => {
                                     </span>
                                 </label>
 
-                                <select
-                                    name="role"
-                                    className="select select-bordered w-full focus:outline-none rounded-md"
-                                >
-                                    <option defaultValue="buyer">Buyer</option>
-                                    <option defaultValue="seller">
-                                        Seller
-                                    </option>
-                                </select>
+                                <div className="flex items-center">
+                                    <label class="flex  rounded-md px-3 py-2  cursor-pointer ">
+                                        <input
+                                            type="radio"
+                                            value="Buyer"
+                                            defaultChecked
+                                            name="role"
+                                        />
+                                        <span class="pl-2">Buyer</span>
+                                    </label>
+
+                                    <label class="flex  rounded-md px-3 py-2 cursor-pointer ">
+                                        <input
+                                            type="radio"
+                                            value="Seller"
+                                            name="role"
+                                        />
+                                        <span class="pl-2">Seller</span>
+                                    </label>
+                                </div>
                             </div>
 
                             <div className="form-control mt-6">

@@ -11,6 +11,8 @@ import useAdmin from '../hooks/useAdmin';
 import useSeller from '../hooks/useSeller';
 import useByuer from '../hooks/useByuer';
 import Loading from '../compenents/Loading/Loading';
+import defaultImage from '../asserts/Images/profile/profile-img.png';
+import { FaProductHunt } from 'react-icons/fa';
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
@@ -67,7 +69,14 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-72 bg-gradient-to-tr from-[#0aa68e] to-[#149777] flex items-center">
                         <div className="avatar mt-10  mb-3">
                             <div className="w-24 rounded-full">
-                                <img src={user?.photoURL} alt="" />
+                                <img
+                                    src={
+                                        userData?.userImage
+                                            ? userData?.userImage
+                                            : defaultImage
+                                    }
+                                    alt=""
+                                />
                             </div>
                         </div>
                         <div className="text-center my-3 text-white ">
@@ -117,6 +126,15 @@ const DashboardLayout = () => {
                             )}
                             {isAdmin && (
                                 <>
+                                    <li>
+                                        <Link
+                                            to="/dashboard/product"
+                                            className="font-bold text-white bg-transparent hover:underline hover:underline-offset-4"
+                                        >
+                                            <FaProductHunt className="text-xl" />
+                                            Add Product Catagory
+                                        </Link>
+                                    </li>
                                     <li className="mb-2">
                                         <Link
                                             to="/dashboard/allSellers"
@@ -135,6 +153,7 @@ const DashboardLayout = () => {
                                             All Buyers
                                         </Link>
                                     </li>
+
                                     <li>
                                         <Link
                                             to="/dashboard/reportedItems"

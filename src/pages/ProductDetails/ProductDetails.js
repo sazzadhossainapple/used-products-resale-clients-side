@@ -7,12 +7,15 @@ function ProductDetails() {
     return (
         <div className="px-4 sm:px-6 md:px-12 lg:px-20">
             <div className="my-10 sm:my-12 md:my-16 lg:my-20 ">
-                <div className="mb-16 text-center flex justify-center ">
+                <div className="text-center flex justify-center ">
                     <h1 className=" text-3xl font-bold  italic">
                         {productDetails?.productName}
                     </h1>
                     <hr className="border-2 w-7 border-[#149777]" />
                 </div>
+            </div>
+            <div className="my-3">
+                <div>some text</div>
             </div>
         </div>
     );

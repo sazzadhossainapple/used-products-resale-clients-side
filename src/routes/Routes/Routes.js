@@ -23,6 +23,7 @@ import About from '../../pages/About/About';
 import Contact from '../../pages/Contact/Contact';
 import BlogSingle from '../../pages/BlogSingle/BlogSingle';
 import ProductDetails from '../../pages/ProductDetails/ProductDetails';
+import ProductName from '../../pages/Dashboard/ProductName/ProductName';
 
 export const router = createBrowserRouter([
     {
@@ -125,6 +126,14 @@ export const router = createBrowserRouter([
                 element: (
                     <AdminRoutes>
                         <AllBuyers />
+                    </AdminRoutes>
+                ),
+            },
+            {
+                path: '/dashboard/product',
+                element: (
+                    <AdminRoutes>
+                        <ProductName />
                     </AdminRoutes>
                 ),
             },
